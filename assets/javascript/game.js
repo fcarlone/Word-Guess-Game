@@ -1,4 +1,3 @@
-console.log('test javascript')
 // Global scope
 let countryName = '';
 let response = '';
@@ -40,6 +39,13 @@ const randomCountry = (obj) => {
     globalUnderscoreFormat = formatQuesion(countryName);
   }
 };
+
+// Get country's flag image
+const countryFlagImage = (countryName) => {
+  let imagePath = `assets/images/${countryName}.png`
+  console.log(`imagePath: ${imagePath}`);
+  document.getElementById('flag-image').src = imagePath;
+}
 
 const formatQuesion = (countryName) => {
   // console.log(`test formatQuestion function: ${countryName}`)
@@ -141,8 +147,10 @@ const checkLetter = (letter, country, newString) => {
 // };
 
 randomCountry(countryData);
+countryFlagImage(countryName);
 // console.log(`countryName Scope: ${countryName}`)
 console.log(`Respone global scope: ${responseKeyEvent}`)
 console.log(`UnderScore global scope: ${underScoreFormat}`)
+console.log(`Global country name ${countryName}`);
 
 console.log(`**Global globalUnderscoreFormat: ${globalUnderscoreFormat}`);
