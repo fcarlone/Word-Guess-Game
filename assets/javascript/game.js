@@ -7,6 +7,7 @@ let newStringArray = [];
 let underScoreFormat;
 let countryArray = [];
 let formatArray = []
+let wrongGussesAllowed = 5;
 
 const countryData = {
   country: ['argentina', 'canada', 'egypt', 'india', 'italy', 'myanmar', 'south africa',
@@ -14,8 +15,15 @@ const countryData = {
   guessFormat: 'empty'
 }
 
-const usedCountry = ['egypt', 'india', 'italy',];
-const responseKeyEvent = [];
+let usedCountry = ['egypt', 'india', 'italy',];
+let responseKeyEvent = [];
+let wrongRepsonseKeyEventArray = [];
+let wrongRepsonseQuessCount = 0;
+
+
+// Initial website setup content
+document.getElementById('guesses-allowed').innerHTML = (wrongGussesAllowed - wrongRepsonseQuessCount);
+
 
 // Get random country from countryData object - via country: array index number
 const randomCountry = (obj) => {
@@ -82,27 +90,51 @@ document.onkeyup = function (event) {
 }
 
 const checkLetterTwo = (letter, country, format, countryArray, formatArray) => {
+  // Compare letter selected against country name
   for (let i = 0; i < countryArray.length; i++) {
     if (letter === countryArray[i]) {
-      console.log(`checkLetterTwo letter:${letter} indexNumber = ${i}`)
       formatArray.splice(i, 1, letter)
-
-      console.log(`** Global globalUnderscoreFormat: ${globalUnderscoreFormat}`);
       globalUnderscoreFormat = formatArray.join('');
-      console.log(`** Global globalUnderscoreFormat: ${globalUnderscoreFormat}`);
       globalUnderscoreFormat = globalUnderscoreFormat.split('').join(' ');
-      console.log(`** Global globalUnderscoreFormat: ${globalUnderscoreFormat}`);
       document.getElementById('question-format').innerHTML = globalUnderscoreFormat;
+
+    } else if (responseKeyEvent.includes(letter) && !countryArray.includes(letter) && !wrongRepsonseKeyEventArray.includes(letter)) {
+      // If incorrect guess 
+      // Check if letter was already used and check if letter is incorrect
+      // Increase wrongRepsonseQuessCount by one and push letter to wrongResponseKeyEventArray array
+      wrongRepsonseKeyEventArray.push(letter);
+      wrongRepsonseQuessCount = wrongRepsonseQuessCount + 1;
+      document.getElementById('guesses-allowed').innerHTML = (wrongGussesAllowed - wrongRepsonseQuessCount);
+      lettersList(wrongRepsonseKeyEventArray);
+    } else {
+      // undecided
     }
+
+    console.log(`***checkLetterTwo responseKeyEvent: ${responseKeyEvent} && wrongRepsonseKeyEventArray: ${wrongRepsonseKeyEventArray}`)
+
   };
-  console.log(`checkLetterTwo countryArray: ${countryArray.length}`)
-  console.log(`checkLetterTwo countryArray: ${countryArray}`)
-  console.log(`checkLetterTwo formatArray: ${formatArray.length}`)
-  console.log(`checkLetterTwo formatArray: ${formatArray}`)
+  // console.log(`checkLetterTwo countryArray: ${countryArray.length}`)
+  // console.log(`checkLetterTwo countryArray: ${countryArray}`)
+  // console.log(`checkLetterTwo formatArray: ${formatArray.length}`)
+  // console.log(`checkLetterTwo formatArray: ${formatArray}`)
 
 }
+
+// List all the incorrect letter(s) to website
+const lettersList = (wrongRepsonseKeyEventArray) => {
+  let letters = wrongRepsonseKeyEventArray.join(', ');
+
+  // console.log(`letters: ${letters}`);
+  document.getElementById('incorrect-letters').innerHTML = letters
+}
+
+
+// Add validations and check conditions
+
+
 
 randomCountry(countryData);
 countryFlagImage(countryName);
 console.log(`** Global globalUnderscoreFormat: ${globalUnderscoreFormat}`);
+
 
