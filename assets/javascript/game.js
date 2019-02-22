@@ -8,11 +8,15 @@ let underScoreFormat;
 let countryArray = [];
 let formatArray = []
 let wrongGussesAllowed = 7;
-let usedCountry = ['egypt', 'india', 'italy',];
+let usedCountry = ['egypt', 'india', 'italy'];
+
 let responseKeyEvent = [];
 let wrongRepsonseKeyEventArray = [];
 let wrongRepsonseQuessCount = 0;
+
 let questions = 5;
+let questionsRight = 0;
+let questionsWrong = 0;
 
 const countryData = {
   country: ['argentina', 'canada', 'egypt', 'india', 'italy', 'myanmar', 'south africa',
@@ -88,10 +92,12 @@ document.onkeyup = function (event) {
   }
   // console.log(`Respone global scope: ${responseKeyEvent} ${globalUnderscoreFormat} ${countryData.guessFormat}`)
   // checkLetter(response, countryName, countryData.guessFormat);
-  checkLetterTwo(response, countryName, countryData.guessFormat, countryArray, formatArray);
+  checkLetter(response, countryName, countryData.guessFormat, countryArray, formatArray);
 }
 
-const checkLetterTwo = (letter, country, format, countryArray, formatArray) => {
+const checkLetter = (letter, country, format, countryArray, formatArray) => {
+
+
   // Compare letter selected against country name
   for (let i = 0; i < countryArray.length; i++) {
     if (letter === countryArray[i]) {
@@ -112,7 +118,7 @@ const checkLetterTwo = (letter, country, format, countryArray, formatArray) => {
       // undecided
     }
 
-    console.log(`***checkLetterTwo responseKeyEvent: ${responseKeyEvent} && wrongRepsonseKeyEventArray: ${wrongRepsonseKeyEventArray}`)
+    // console.log(`***checkLetterTwo responseKeyEvent: ${responseKeyEvent} && wrongRepsonseKeyEventArray: ${wrongRepsonseKeyEventArray}`)
 
   };
   // console.log(`checkLetterTwo countryArray: ${countryArray.length}`)
@@ -132,9 +138,22 @@ const lettersList = (wrongRepsonseKeyEventArray) => {
 
 
 // Add validations and check conditions
+const checkReponse = (formatArray, countryArray, country, checkAnswer) => {
+  // Check if answer is correct
+  checkAnswer = formatArray.join('')
+  console.log(`This country array: ${countryArray} and format array: ${formatArray} country: ${country} checkAnswer ${checkAnswer}`)
+  if (country == checkAnswer) {
+    // If correct increase correct score by one and update scoreboard
+    questionsRight += 1;
+    document.getElementById('score-correct').innerHTML = questionsRight;
+    console.log(`This country array and format array match ${countryArray}:${formatArray}`)
 
+  } else {
+    console.log('no match')
+  }
+}
 
-
+checkReponse(formatArray, countryArray, countryName);
 randomCountry(countryData);
 countryFlagImage(countryName);
 console.log(`** Global globalUnderscoreFormat: ${globalUnderscoreFormat}`);
