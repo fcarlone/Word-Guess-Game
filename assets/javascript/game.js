@@ -26,7 +26,7 @@ const countryData = {
 
 
 // Initial website setup content
-document.getElementById('guesses-allowed').innerHTML = (wrongGussesAllowed - wrongRepsonseQuessCount);
+
 document.getElementById('score-correct').innerHTML = 0;
 document.getElementById('score-question-count').innerHTML = questionsCount;
 
@@ -50,6 +50,12 @@ const randomCountry = (obj) => {
     // Run the randomCountry function again to get another country
     randomCountry(countryData);
   } else {
+    //  Reset wrong guess count and incorrect letters array
+    wrongRepsonseKeyEventArray = [];
+    wrongGussesAllowed = 7;
+    document.getElementById("guesses-allowed").innerHTML = wrongGussesAllowed;
+    document.getElementById("incorrect-letters").innerHTML = wrongRepsonseKeyEventArray;
+
     console.log('not used');
     // Push country to 'usedCountry array'
     usedCountry.push(countryName);
@@ -118,8 +124,8 @@ const checkLetter = (letter, country, format, countryArray, formatArray) => {
       // Check if letter was already used and check if letter is incorrect
       // Increase wrongRepsonseQuessCount by one and push letter to wrongResponseKeyEventArray array
       wrongRepsonseKeyEventArray.push(letter);
-      wrongRepsonseQuessCount = wrongRepsonseQuessCount + 1;
-      document.getElementById('guesses-allowed').innerHTML = (wrongGussesAllowed - wrongRepsonseQuessCount);
+      // wrongRepsonseQuessCount = wrongRepsonseQuessCount + 1;
+      document.getElementById('guesses-allowed').innerHTML = (wrongGussesAllowed -= 1);
       lettersList(wrongRepsonseKeyEventArray);
     } else {
       // undecided
