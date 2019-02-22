@@ -8,6 +8,14 @@
   width: 500px;
 }
 
+.score {
+  width: 1020px;
+}
+
+.score p {
+  margin: 0;
+}
+
 #flag-image {
   height: 250px;
   width: 400px;

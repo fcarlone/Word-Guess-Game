@@ -2,12 +2,17 @@
 let countryName = '';
 let response = '';
 let globalUnderscoreFormat = '';
-let newString = '';
-let newStringArray = [];
+// let newString = '';
+// let newStringArray = [];
 let underScoreFormat;
 let countryArray = [];
 let formatArray = []
-let wrongGussesAllowed = 5;
+let wrongGussesAllowed = 7;
+let usedCountry = ['egypt', 'india', 'italy',];
+let responseKeyEvent = [];
+let wrongRepsonseKeyEventArray = [];
+let wrongRepsonseQuessCount = 0;
+let questions = 5;
 
 const countryData = {
   country: ['argentina', 'canada', 'egypt', 'india', 'italy', 'myanmar', 'south africa',
@@ -15,10 +20,7 @@ const countryData = {
   guessFormat: 'empty'
 }
 
-let usedCountry = ['egypt', 'india', 'italy',];
-let responseKeyEvent = [];
-let wrongRepsonseKeyEventArray = [];
-let wrongRepsonseQuessCount = 0;
+
 
 
 // Initial website setup content
