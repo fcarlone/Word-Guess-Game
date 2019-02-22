@@ -2,8 +2,6 @@
 let countryName = '';
 let response = '';
 let globalUnderscoreFormat = '';
-// let newString = '';
-// let newStringArray = [];
 let underScoreFormat;
 let countryArray = [];
 let formatArray = []
@@ -15,8 +13,10 @@ let wrongRepsonseKeyEventArray = [];
 let wrongRepsonseQuessCount = 0;
 
 let questions = 5;
+let questionsCount = 0;
 let questionsRight = 0;
 let questionsWrong = 0;
+let totalQuestions = questionsRight + questionsWrong;
 
 const countryData = {
   country: ['argentina', 'canada', 'egypt', 'india', 'italy', 'myanmar', 'south africa',
@@ -25,14 +25,20 @@ const countryData = {
 }
 
 
-
-
 // Initial website setup content
 document.getElementById('guesses-allowed').innerHTML = (wrongGussesAllowed - wrongRepsonseQuessCount);
-
+document.getElementById('score-correct').innerHTML = 0;
+document.getElementById('score-question-count').innerHTML = questionsCount;
 
 // Get random country from countryData object - via country: array index number
 const randomCountry = (obj) => {
+
+  console.log(`** Global questionsCount: ${questionsCount}`);
+  if (questionsCount > 5) {
+    console.log(`***stop this program***`)
+    // Stop the questions when allocated questions are met;
+    endQuestion();
+  }
   let indexNumber = Math.floor(Math.random() * obj.country.length);
 
   // Get the value/name of the country
@@ -68,7 +74,6 @@ const formatQuesion = (countryName) => {
 
   globalUnderscoreFormat = underscoreFormat;
   formatArray = [...underscoreFormat];
-  console.log(`formatQuestion: formatArray: ${formatArray.length}`);
 
   // document.getElementById('question-format').innerHTML = underscoreFormat;
   document.getElementById('question-format').innerHTML = initialUnderscoreFormat;
@@ -79,24 +84,26 @@ const createCountryArray = (countryName) => {
   countryArray = [...countryName]
 }
 
-// onkeyup event 
-document.onkeyup = function (event) {
-  let response = (event.key)
-  // Check if letter was already selected
-  if (responseKeyEvent.includes(response)) {
-    // console.log(`responseKeyEvent: ${response} already selected`)
-  } else {
-    // push selected letter to responseKeyEvent array
-    responseKeyEvent.push(response);
-    document.getElementById('letter-selected').innerHTML = response;
+// Wrap onkeyup event in funciton
+const onKeyUpFunction = () => {
+  // onkeyup event 
+  document.onkeyup = function (event) {
+    let response = (event.key)
+    // Check if letter was already selected
+    if (responseKeyEvent.includes(response)) {
+      // console.log(`responseKeyEvent: ${response} already selected`)
+    } else {
+      // push selected letter to responseKeyEvent array
+      responseKeyEvent.push(response);
+      document.getElementById('letter-selected').innerHTML = response;
+    }
+
+    checkLetter(response, countryName, countryData.guessFormat, countryArray, formatArray);
+    checkResponse(formatArray, countryArray, countryName)
   }
-  // console.log(`Respone global scope: ${responseKeyEvent} ${globalUnderscoreFormat} ${countryData.guessFormat}`)
-  // checkLetter(response, countryName, countryData.guessFormat);
-  checkLetter(response, countryName, countryData.guessFormat, countryArray, formatArray);
-}
+};
 
 const checkLetter = (letter, country, format, countryArray, formatArray) => {
-
 
   // Compare letter selected against country name
   for (let i = 0; i < countryArray.length; i++) {
@@ -121,11 +128,6 @@ const checkLetter = (letter, country, format, countryArray, formatArray) => {
     // console.log(`***checkLetterTwo responseKeyEvent: ${responseKeyEvent} && wrongRepsonseKeyEventArray: ${wrongRepsonseKeyEventArray}`)
 
   };
-  // console.log(`checkLetterTwo countryArray: ${countryArray.length}`)
-  // console.log(`checkLetterTwo countryArray: ${countryArray}`)
-  // console.log(`checkLetterTwo formatArray: ${formatArray.length}`)
-  // console.log(`checkLetterTwo formatArray: ${formatArray}`)
-
 }
 
 // List all the incorrect letter(s) to website
@@ -137,25 +139,62 @@ const lettersList = (wrongRepsonseKeyEventArray) => {
 }
 
 
-// Add validations and check conditions
-const checkReponse = (formatArray, countryArray, country, checkAnswer) => {
+// Add validations and check conditions for correct answer
+const checkResponse = (formatArray, countryArray, countryName) => {
   // Check if answer is correct
-  checkAnswer = formatArray.join('')
-  console.log(`This country array: ${countryArray} and format array: ${formatArray} country: ${country} checkAnswer ${checkAnswer}`)
-  if (country == checkAnswer) {
+  checkAnswer = formatArray.join('');
+  if (countryName === checkAnswer) {
+
     // If correct increase correct score by one and update scoreboard
+    console.log(`This country array and format array match ${countryArray}:${formatArray}`)
     questionsRight += 1;
     document.getElementById('score-correct').innerHTML = questionsRight;
-    console.log(`This country array and format array match ${countryArray}:${formatArray}`)
 
+    // start next quiz
+    startQuestions();
   } else {
     console.log('no match')
   }
 }
 
-checkReponse(formatArray, countryArray, countryName);
-randomCountry(countryData);
-countryFlagImage(countryName);
-console.log(`** Global globalUnderscoreFormat: ${globalUnderscoreFormat}`);
+const startQuestions = () => {
+  questionsCount += 1;
+  document.getElementById("score-question-count").innerHTML = questionsCount;
+  randomCountry(countryData);
+  countryFlagImage(countryName);
+  onKeyUpFunction();
+}
 
+
+const endQuestion = () => {
+  console.log(`endQuesiton Function is invoked`)
+  document.getElementById("display").remove();
+  document.getElementById("game").remove();
+
+  document.getElementById('user-message').innerHTML = "You completed the five quesitons"
+  console.log(`** Global questionsCount: ${questionsCount}`);
+  console.log('DONE');
+
+
+}
+
+// Start app - IIFE 
+
+const startApp = (questionsCount) => {
+  if (questionsCount > 5) {
+    console.log(`** Global questionsCount: ${questionsCount}`);
+    document.getElementById('question-format').innerHTML = '';
+    document.getElementById('flag-image') = '';
+    document.getElementById('user-message').innerHTML = "You completed the five quesitons"
+    endQuestions();
+
+  } else {
+    console.log(`**Check Question Count`);
+    startQuestions();
+  }
+};
+
+startApp(questionsCount);
+console.log(`** Global globalUnderscoreFormat: ${globalUnderscoreFormat}`);
+console.log(`** Global questionsCount: ${questionsCount}`);
 

@@ -24,14 +24,14 @@
 
   <div class="d-flex justify-content-center">
 
-    <div class="display">
+    <div id="display">
       <div class="display-border border border-secondary">
         <p>display flag border</p>
         <img id="flag-image" alt="flag">
       </div>
     </div>
 
-    <div class="game">
+    <div id="game">
       <div class="game-border border border-secondary">
         <p>game border</p>
         <p>Information content</p>
@@ -48,11 +48,11 @@
   </div>
 
   <div class="d-flex justify-content-center">
-    <div class="score">
+    <div id="score">
       <div class="score-border border border-secondary">
         <p>score border</p>
         <p>Guess the country for the following 5 flags</p>
-        <p>Question left:</p>
+        <p>Question Number: <a id="score-question-count"></a></p>
         <p>You have ${} question left</p>
         <p>You answered # correctly <a id="score-correct"></a></p>
         <p>You answered # incorrectly <a id="score-wrong"></a></p>
