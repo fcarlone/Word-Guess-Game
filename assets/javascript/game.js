@@ -110,30 +110,39 @@ const onKeyUpFunction = () => {
 };
 
 const checkLetter = (letter, country, format, countryArray, formatArray) => {
+  // Check the wrongGuessesAllowed Count - invoke checkResponse
+  if (wrongGussesAllowed === 0) {
+    console.log(`checkLetter function - questionsWrong: ${questionsWrong}`);
+    questionsWrong += 1;
+    document.getElementById('score-wrong').innerHTML = questionsWrong;
+    // Start next question
+    startQuestions();
+  } else {
 
-  // Compare letter selected against country name
-  for (let i = 0; i < countryArray.length; i++) {
-    if (letter === countryArray[i]) {
-      formatArray.splice(i, 1, letter)
-      globalUnderscoreFormat = formatArray.join('');
-      globalUnderscoreFormat = globalUnderscoreFormat.split('').join(' ');
-      document.getElementById('question-format').innerHTML = globalUnderscoreFormat;
+    // Compare letter selected against country name
+    for (let i = 0; i < countryArray.length; i++) {
+      if (letter === countryArray[i]) {
+        formatArray.splice(i, 1, letter)
+        globalUnderscoreFormat = formatArray.join('');
+        globalUnderscoreFormat = globalUnderscoreFormat.split('').join(' ');
+        document.getElementById('question-format').innerHTML = globalUnderscoreFormat;
 
-    } else if (responseKeyEvent.includes(letter) && !countryArray.includes(letter) && !wrongRepsonseKeyEventArray.includes(letter)) {
-      // If incorrect guess 
-      // Check if letter was already used and check if letter is incorrect
-      // Increase wrongRepsonseQuessCount by one and push letter to wrongResponseKeyEventArray array
-      wrongRepsonseKeyEventArray.push(letter);
-      // wrongRepsonseQuessCount = wrongRepsonseQuessCount + 1;
-      document.getElementById('guesses-allowed').innerHTML = (wrongGussesAllowed -= 1);
-      lettersList(wrongRepsonseKeyEventArray);
-    } else {
-      // undecided
-    }
+      } else if (responseKeyEvent.includes(letter) && !countryArray.includes(letter) && !wrongRepsonseKeyEventArray.includes(letter)) {
+        // If incorrect guess 
+        // Check if letter was already used and check if letter is incorrect
+        // Increase wrongRepsonseQuessCount by one and push letter to wrongResponseKeyEventArray array
+        wrongRepsonseKeyEventArray.push(letter);
+        // wrongRepsonseQuessCount = wrongRepsonseQuessCount + 1;
+        document.getElementById('guesses-allowed').innerHTML = (wrongGussesAllowed -= 1);
+        lettersList(wrongRepsonseKeyEventArray);
+      } else {
+        // undecided
+      }
 
-    // console.log(`***checkLetterTwo responseKeyEvent: ${responseKeyEvent} && wrongRepsonseKeyEventArray: ${wrongRepsonseKeyEventArray}`)
+      // console.log(`***checkLetterTwo responseKeyEvent: ${responseKeyEvent} && wrongRepsonseKeyEventArray: ${wrongRepsonseKeyEventArray}`)
 
-  };
+    };
+  }
 }
 
 // List all the incorrect letter(s) to website
@@ -163,6 +172,7 @@ const checkResponse = (formatArray, countryArray, countryName) => {
   }
 }
 
+// Functions for start app
 const startQuestions = () => {
   questionsCount += 1;
   document.getElementById("score-question-count").innerHTML = questionsCount;
