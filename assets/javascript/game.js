@@ -6,7 +6,7 @@ let underScoreFormat;
 let countryArray = [];
 let formatArray = []
 let wrongGussesAllowed = 7;
-let usedCountry = ['egypt', 'india', 'italy'];
+let usedCountry = [];
 
 let responseKeyEvent = [];
 let wrongRepsonseKeyEventArray = [];
