@@ -13,6 +13,7 @@ let wrongRepsonseKeyEventArray = [];
 let wrongRepsonseQuessCount = 0;
 
 let questions = 5;
+let questionsLeft = 5;
 let questionsCount = 0;
 let questionsRight = 0;
 let questionsWrong = 0;
@@ -25,8 +26,7 @@ const countryData = {
 }
 
 
-// Initial website setup content
-
+// Initial website content
 document.getElementById('score-correct').innerHTML = 0;
 document.getElementById('score-wrong').innerHTML = 0;
 document.getElementById('score-question-left').innerHTML = questions;
@@ -35,9 +35,7 @@ document.getElementById('score-question-count').innerHTML = questionsCount;
 // Get random country from countryData object - via country: array index number
 const randomCountry = (obj) => {
 
-  console.log(`** Global questionsCount: ${questionsCount}`);
   if (questionsCount > 5) {
-    console.log(`***stop this program***`)
     // Stop the questions when allocated questions are met;
     endQuestion();
   }
@@ -75,7 +73,7 @@ const countryFlagImage = (countryName) => {
 }
 
 const formatQuesion = (countryName) => {
-  // console.log(`test formatQuestion function: ${countryName}`)
+
   let regex = /([a-z])/g;
   let underscoreFormat = countryName.replace(regex, '_');
   let initialUnderscoreFormat = countryName.replace(regex, '_ ');
@@ -105,7 +103,6 @@ const onKeyUpFunction = () => {
       responseKeyEvent.push(response);
       document.getElementById('letter-selected').innerHTML = response;
     }
-
     checkLetter(response, countryName, countryData.guessFormat, countryArray, formatArray);
     checkResponse(formatArray, countryArray, countryName)
   }
@@ -117,6 +114,10 @@ const checkLetter = (letter, country, format, countryArray, formatArray) => {
     console.log(`checkLetter function - questionsWrong: ${questionsWrong}`);
     questionsWrong += 1;
     document.getElementById('score-wrong').innerHTML = questionsWrong;
+    // Reduce questionsLeft count by one
+    console.log(`checkResponse - check questions left count questions: ${questions} - questionsCount: ${questionsCount}`)
+    questionsLeft -= 1;
+    document.getElementById("score-question-left").innerHTML = questionsLeft;
     // Start next question
     startQuestions();
   } else {
@@ -141,8 +142,6 @@ const checkLetter = (letter, country, format, countryArray, formatArray) => {
         // undecided
       }
 
-      // console.log(`***checkLetterTwo responseKeyEvent: ${responseKeyEvent} && wrongRepsonseKeyEventArray: ${wrongRepsonseKeyEventArray}`)
-
     };
   }
 }
@@ -166,7 +165,10 @@ const checkResponse = (formatArray, countryArray, countryName) => {
     console.log(`This country array and format array match ${countryArray}:${formatArray}`)
     questionsRight += 1;
     document.getElementById('score-correct').innerHTML = questionsRight;
-
+    // Reduce questionsLeft count by one
+    console.log(`checkResponse - check questions left count questions: ${questions} - questionsCount: ${questionsCount}`)
+    questionsLeft -= 1;
+    document.getElementById("score-question-left").innerHTML = questionsLeft;
     // start next quiz
     startQuestions();
   } else {
@@ -190,14 +192,12 @@ const endQuestion = () => {
   document.getElementById("game").remove();
 
   document.getElementById('user-message').innerHTML = "You completed the five quesitons"
+  document.getElementById("score-question-count").innerHTML = 5;
   console.log(`** Global questionsCount: ${questionsCount}`);
   console.log('DONE');
-
-
 }
 
 // Start app - IIFE 
-
 const startApp = (questionsCount) => {
   if (questionsCount > 5) {
     console.log(`** Global questionsCount: ${questionsCount}`);
@@ -207,7 +207,6 @@ const startApp = (questionsCount) => {
     endQuestions();
 
   } else {
-    console.log(`**Check Question Count`);
     startQuestions();
   }
 };

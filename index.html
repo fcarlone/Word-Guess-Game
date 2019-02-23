@@ -27,7 +27,7 @@
       <div class="score-border">
         <div class="score-content">
           <p class="score-scoreboard">Scoreboard</p>
-          <p>Question Number: <a id="score-question-count"></a></p>
+
           <p>Questions Left: <a id="score-question-left"></a></p>
           <p>Correct Answers: <a id="score-correct"></a></p>
           <p>Wrong Answers: <a id="score-wrong"></a></p>
@@ -40,18 +40,22 @@
 
     <div id="display">
       <div class="display-border">
-        <p class="display-content">Which country does this flag belong to?</p>
+        <div class="display-content">
+          <p>Which country does this flag belong to?</p>
+          <p>Country Flag Number: <a id="score-question-count"></a></p>
+        </div>
         <img id="flag-image" alt="flag">
       </div>
     </div>
 
     <div id="game">
       <div class="game-border">
+        <p class="game-content-title">Press a key to quess the country's name</p>
         <div class="game-content">
-          <p class="game-content-title">Press a key to quess the country's name</p>
+          <br>
           <p>You selected letter: <a id="letter-selected"></a></p>
           <pre><p id="question-format"></p></pre>
-          <p>You are left with <a id="guesses-allowed"></a> more wrong guesses</p>
+          <p>You have <a id="guesses-allowed"></a> guesses left</p>
           <p>Incorrect letter(s) selected: </p>
           <p id="incorrect-letters"></p>
         </div>
