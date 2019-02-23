@@ -28,6 +28,8 @@ const countryData = {
 // Initial website setup content
 
 document.getElementById('score-correct').innerHTML = 0;
+document.getElementById('score-wrong').innerHTML = 0;
+document.getElementById('score-question-left').innerHTML = questions;
 document.getElementById('score-question-count').innerHTML = questionsCount;
 
 // Get random country from countryData object - via country: array index number

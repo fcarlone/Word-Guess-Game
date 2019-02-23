@@ -1,15 +1,41 @@
-.display {
+body {
+  background-image: url("../images/002-background.png");
+  background-size: cover;
+}
+
+h1,
+h3,
+.messages {
+  color: white;
+  /* font-family: 'PT Sans', sans-serif; */
+}
+
+h1 {
+  padding-top: 30px;
+  text-align: center;
+}
+
+#display {
   margin-right: 10px;
-  width: 300px;
+  width: 500px;
 }
 
 #game {
   margin-left: 10px;
-  width: 300px;
+  width: 500px;
 }
 
 #score {
-  width: 750px;
+  width: 1020px;
+  margin-bottom: 10px;
+  /* font-family: 'Lato', sans-serif; */
+  font-family: 'PT Sans', sans-serif;
+}
+
+#score,
+#display,
+#game {
+  background: rgba(255, 255, 255, .55);
 }
 
 #score p {
@@ -19,4 +45,50 @@
 #flag-image {
   height: 250px;
   width: 400px;
+}
+
+.score-scoreboard {
+  font-size: 30px;
+  text-align: center;
+}
+
+.score-border {
+  margin-bottom: 20px;
+}
+
+.score-content {
+  color: black;
+  margin-left: 40px;
+  font-family: 'PT Sans', sans-serif;
+  font-size: 20px;
+}
+
+.display-border {
+  padding-bottom: 10px;
+}
+
+.display-content {
+  text-align: center;
+  font-family: 'PT Sans', sans-serif;
+  font-size: 20px;
+}
+
+.game-content {
+  font-family: 'PT Sans', sans-serif;
+  font-size: 20px;
+  padding-left: 10px;
+}
+
+.game-content-title {
+  font-family: 'PT Sans', sans-serif;
+  font-size: 20px;
+  text-align: center;
+  padding: 0;
+}
+
+#flag-image {
+  text-align: center;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }

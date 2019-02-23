@@ -8,6 +8,7 @@
   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Lato|PT+Sans" rel="stylesheet">
   <title>Word Guess Game</title>
 </head>
 <h1>Guess The Country Game</h1>
@@ -21,45 +22,42 @@
     <p id="user-message"></p>
   </div>
 
+  <div class="d-flex justify-content-center">
+    <div id="score">
+      <div class="score-border">
+        <div class="score-content">
+          <p class="score-scoreboard">Scoreboard</p>
+          <p>Question Number: <a id="score-question-count"></a></p>
+          <p>Questions Left: <a id="score-question-left"></a></p>
+          <p>Correct Answers: <a id="score-correct"></a></p>
+          <p>Wrong Answers: <a id="score-wrong"></a></p>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div class="d-flex justify-content-center">
 
     <div id="display">
-      <div class="display-border border border-secondary">
-        <p>display flag border</p>
+      <div class="display-border">
+        <p class="display-content">Which country does this flag belong to?</p>
         <img id="flag-image" alt="flag">
       </div>
     </div>
 
     <div id="game">
-      <div class="game-border border border-secondary">
-        <p>game border</p>
-        <p>Information content</p>
-
-        <p>Press a key to quess the country's name</p>
-        <p>You selected letter: <a id="letter-selected"></a></p>
-
-        <pre><p id="question-format"></p></pre>
-        <p>You are left with <a id="guesses-allowed"></a> more wrong guesses</p>
-        <p>Incorrect letter(s) selected: </p>
-        <p id="incorrect-letters"></p>
+      <div class="game-border">
+        <div class="game-content">
+          <p class="game-content-title">Press a key to quess the country's name</p>
+          <p>You selected letter: <a id="letter-selected"></a></p>
+          <pre><p id="question-format"></p></pre>
+          <p>You are left with <a id="guesses-allowed"></a> more wrong guesses</p>
+          <p>Incorrect letter(s) selected: </p>
+          <p id="incorrect-letters"></p>
+        </div>
       </div>
     </div>
   </div>
-
-  <div class="d-flex justify-content-center">
-    <div id="score">
-      <div class="score-border border border-secondary">
-        <p>score border</p>
-        <p>Guess the country for the following 5 flags</p>
-        <p>Question Number: <a id="score-question-count"></a></p>
-        <p>You have ${} question left</p>
-        <p>You answered # correctly <a id="score-correct"></a></p>
-        <p>You answered # incorrectly <a id="score-wrong"></a></p>
-      </div>
-    </div>
-  </div>
-
 
 </div>
 
