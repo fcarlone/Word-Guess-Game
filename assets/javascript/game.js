@@ -181,7 +181,6 @@ const startQuestions = () => {
   }
 };
 
-
 const endQuestion = () => {
   console.log(`endQuesiton Function is invoked`)
   // Disable keys when game is completed
@@ -192,6 +191,11 @@ const endQuestion = () => {
   document.getElementById("game").remove();
   document.getElementById("user-message").innerHTML = `You completed the quiz.  Check out your score.`
 };
+
+// Repaly game
+const replayGame = () => {
+  location.reload();
+}
 
 // Start app - IIFE 
 const startApp = (questionsCount) => {
