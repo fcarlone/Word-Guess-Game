@@ -17,7 +17,6 @@ let questionsLeft = 5;
 let questionsCount = 0;
 let questionsRight = 0;
 let questionsWrong = 0;
-let totalQuestions = questionsRight + questionsWrong;
 
 const countryData = {
   country: ['argentina', 'canada', 'egypt', 'india', 'italy', 'myanmar', 'south africa',
@@ -34,7 +33,6 @@ document.getElementById('score-question-count').innerHTML = questionsCount;
 
 // Get random country from countryData object - via country: array index number
 const randomCountry = (obj) => {
-
   if (questionsCount > 5) {
     // Stop the questions when allocated questions are met;
     endQuestion();
@@ -50,7 +48,7 @@ const randomCountry = (obj) => {
     // Run the randomCountry function again to get another country
     randomCountry(countryData);
   } else {
-    //  Reset wrong guess count and incorrect letters array
+    // Reset wrong guess count and incorrect letters array
     wrongRepsonseKeyEventArray = [];
     wrongGussesAllowed = 7;
     document.getElementById("guesses-allowed").innerHTML = wrongGussesAllowed;
@@ -94,7 +92,7 @@ const createCountryArray = (countryName) => {
 const onKeyUpFunction = () => {
   // onkeyup event 
   document.onkeyup = function (event) {
-    let response = (event.key)
+    let response = (event.key).toLocaleLowerCase();
     // Check if letter was already selected
     if (responseKeyEvent.includes(response)) {
       // console.log(`responseKeyEvent: ${response} already selected`)
@@ -103,19 +101,17 @@ const onKeyUpFunction = () => {
       responseKeyEvent.push(response);
       document.getElementById('letter-selected').innerHTML = response;
     }
-    checkLetter(response, countryName, countryData.guessFormat, countryArray, formatArray);
+    checkLetter(response, countryArray, formatArray);
     checkResponse(formatArray, countryArray, countryName)
   }
 };
 
-const checkLetter = (letter, country, format, countryArray, formatArray) => {
+const checkLetter = (letter, countryArray, formatArray) => {
   // Check the wrongGuessesAllowed Count - invoke checkResponse
   if (wrongGussesAllowed === 0) {
-    console.log(`checkLetter function - questionsWrong: ${questionsWrong}`);
     questionsWrong += 1;
     document.getElementById('score-wrong').innerHTML = questionsWrong;
     // Reduce questionsLeft count by one
-    console.log(`checkResponse - check questions left count questions: ${questions} - questionsCount: ${questionsCount}`)
     questionsLeft -= 1;
     document.getElementById("score-question-left").innerHTML = questionsLeft;
     // Start next question
@@ -129,30 +125,24 @@ const checkLetter = (letter, country, format, countryArray, formatArray) => {
         globalUnderscoreFormat = formatArray.join('');
         globalUnderscoreFormat = globalUnderscoreFormat.split('').join(' ');
         document.getElementById('question-format').innerHTML = globalUnderscoreFormat;
-
       } else if (responseKeyEvent.includes(letter) && !countryArray.includes(letter) && !wrongRepsonseKeyEventArray.includes(letter)) {
         // If incorrect guess 
-        // Check if letter was already used and check if letter is incorrect
-        // Increase wrongRepsonseQuessCount by one and push letter to wrongResponseKeyEventArray array
+        // Reduce wrongRepsonseQuessCount by one and push letter to wrongResponseKeyEventArray array
         wrongRepsonseKeyEventArray.push(letter);
-        // wrongRepsonseQuessCount = wrongRepsonseQuessCount + 1;
         document.getElementById('guesses-allowed').innerHTML = (wrongGussesAllowed -= 1);
         lettersList(wrongRepsonseKeyEventArray);
       } else {
         // undecided
       }
-
     };
   }
-}
+};
 
 // List all the incorrect letter(s) to website
 const lettersList = (wrongRepsonseKeyEventArray) => {
-  let letters = wrongRepsonseKeyEventArray.join(', ');
-
-  // console.log(`letters: ${letters}`);
+  let letters = wrongRepsonseKeyEventArray.join(', ').toUpperCase();
   document.getElementById('incorrect-letters').innerHTML = letters
-}
+};
 
 
 // Add validations and check conditions for correct answer
@@ -160,7 +150,6 @@ const checkResponse = (formatArray, countryArray, countryName) => {
   // Check if answer is correct
   checkAnswer = formatArray.join('');
   if (countryName === checkAnswer) {
-
     // If correct increase correct score by one and update scoreboard
     console.log(`This country array and format array match ${countryArray}:${formatArray}`)
     questionsRight += 1;
@@ -174,7 +163,7 @@ const checkResponse = (formatArray, countryArray, countryName) => {
   } else {
     console.log('no match')
   }
-}
+};
 
 // Functions for start app
 const startQuestions = () => {
@@ -183,27 +172,23 @@ const startQuestions = () => {
   randomCountry(countryData);
   countryFlagImage(countryName);
   onKeyUpFunction();
-}
+};
 
 
 const endQuestion = () => {
   console.log(`endQuesiton Function is invoked`)
+  // console.log(`questionsRight ${questionsRight} and questionsWrong${questionsWrong}`)
   document.getElementById("display").remove();
   document.getElementById("game").remove();
-
-  document.getElementById('user-message').innerHTML = "You completed the five quesitons"
+  document.getElementById("user-message").innerHTML = `You completed the quiz.  Check out your score`
   document.getElementById("score-question-count").innerHTML = 5;
-  console.log(`** Global questionsCount: ${questionsCount}`);
-  console.log('DONE');
-}
+};
 
 // Start app - IIFE 
 const startApp = (questionsCount) => {
   if (questionsCount > 5) {
-    console.log(`** Global questionsCount: ${questionsCount}`);
     document.getElementById('question-format').innerHTML = '';
     document.getElementById('flag-image') = '';
-    document.getElementById('user-message').innerHTML = "You completed the five quesitons"
     endQuestions();
 
   } else {
@@ -212,6 +197,5 @@ const startApp = (questionsCount) => {
 };
 
 startApp(questionsCount);
-console.log(`** Global globalUnderscoreFormat: ${globalUnderscoreFormat}`);
-console.log(`** Global questionsCount: ${questionsCount}`);
+
 

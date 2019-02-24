@@ -16,8 +16,14 @@ h1 {
 }
 
 h3 {
+  text-align: center;
   padding-left: 60px;
   padding-right: 60px;
+}
+
+#user-message {
+  text-align: center;
+  font-size: 30px
 }
 
 #display {
