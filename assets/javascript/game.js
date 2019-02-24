@@ -160,7 +160,6 @@ const checkResponse = (formatArray, countryArray, countryName) => {
     questionsLeft -= 1;
     document.getElementById("score-question-left").innerHTML = questionsLeft;
     // start next quiz
-    //startQuestions();
     setTimeout(() => {
       startQuestions();
     }, 1500);
