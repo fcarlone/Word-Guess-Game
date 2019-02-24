@@ -19,7 +19,7 @@ let questionsRight = 0;
 let questionsWrong = 0;
 
 const countryData = {
-  country: ['algeria', 'argentina', 'bangladesh', 'brazil', 'cameroon', 'canada', 'china', 'croatia', 'egypt', 'france', 'germany', 'greece', 'india', 'indonesia', 'iran', 'iraq', 'ireland', 'italy', 'jamaica', 'japan', 'kenya', 'malaysia', 'mexico', 'mozambique', 'myanmar', 'nigeria', 'north-korea', 'pakistan', 'philippines', 'qatar', 'russia', 'singapore', 'south africa', 'south korea', 'spain', 'sweden', 'switzerland', 'tanzania', 'turkey', 'uganda', 'ukraine', 'venezuela', 'vietnam', 'zambia'],
+  country: ['algeria', 'argentina', 'bangladesh', 'brazil', 'cameroon', 'canada', 'china', 'croatia', 'egypt', 'france', 'germany', 'greece', 'india', 'indonesia', 'iran', 'iraq', 'ireland', 'italy', 'jamaica', 'japan', 'kenya', 'malaysia', 'mexico', 'mozambique', 'myanmar', 'nigeria', 'north korea', 'pakistan', 'philippines', 'qatar', 'russia', 'singapore', 'south africa', 'south korea', 'spain', 'sweden', 'switzerland', 'tanzania', 'turkey', 'uganda', 'ukraine', 'venezuela', 'vietnam', 'zambia'],
   guessFormat: 'empty'
 }
 
@@ -160,7 +160,10 @@ const checkResponse = (formatArray, countryArray, countryName) => {
     questionsLeft -= 1;
     document.getElementById("score-question-left").innerHTML = questionsLeft;
     // start next quiz
-    startQuestions();
+    //startQuestions();
+    setTimeout(() => {
+      startQuestions();
+    }, 1500);
   } else {
     console.log('no match')
   }
