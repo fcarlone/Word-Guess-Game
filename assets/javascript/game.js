@@ -30,12 +30,14 @@ document.getElementById('score-correct').innerHTML = 0;
 document.getElementById('score-wrong').innerHTML = 0;
 document.getElementById('score-question-left').innerHTML = questions;
 document.getElementById('score-question-count').innerHTML = questionsCount;
+// Button to give user the option to play the quiz again.
+
 
 // Get random country from countryData object - via country: array index number
 const randomCountry = (obj) => {
   if (questionsCount > 5) {
     // Stop the questions when allocated questions are met;
-    endQuestion();
+    return endQuestion();
   }
   let indexNumber = Math.floor(Math.random() * obj.country.length);
 
@@ -169,28 +171,28 @@ const checkResponse = (formatArray, countryArray, countryName) => {
 const startQuestions = () => {
   questionsCount += 1;
   document.getElementById("score-question-count").innerHTML = questionsCount;
-  randomCountry(countryData);
-  countryFlagImage(countryName);
-  onKeyUpFunction();
+  // Check questionsCount before invoking functions
+  if (questionsCount > 5) {
+    endQuestion();
+  } else if (questionsCount <= 5) {
+    randomCountry(countryData);
+    countryFlagImage(countryName);
+    onKeyUpFunction();
+  }
 };
 
 
 const endQuestion = () => {
   console.log(`endQuesiton Function is invoked`)
-  // console.log(`questionsRight ${questionsRight} and questionsWrong${questionsWrong}`)
   document.getElementById("display").remove();
   document.getElementById("game").remove();
-  document.getElementById("user-message").innerHTML = `You completed the quiz.  Check out your score`
-  document.getElementById("score-question-count").innerHTML = 5;
+  document.getElementById("user-message").innerHTML = `You completed the quiz.  Check out your score.`
 };
 
 // Start app - IIFE 
 const startApp = (questionsCount) => {
   if (questionsCount > 5) {
-    document.getElementById('question-format').innerHTML = '';
-    document.getElementById('flag-image') = '';
     endQuestions();
-
   } else {
     startQuestions();
   }
