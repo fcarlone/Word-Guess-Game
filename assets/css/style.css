@@ -114,6 +114,11 @@ h3 {
 
 #guesses-allowed {
   font-weight: bold;
+  text-decoration: underline;
+}
+
+#quesses-selected {
+  margin: 0;
 }
 
 #replay-game-button {

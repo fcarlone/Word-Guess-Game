@@ -19,8 +19,7 @@ let questionsRight = 0;
 let questionsWrong = 0;
 
 const countryData = {
-  country: ['argentina', 'canada', 'egypt', 'india', 'italy', 'myanmar', 'south africa',
-    'south korea', 'ukraine'],
+  country: ['algeria', 'argentina', 'bangladesh', 'brazil', 'cameroon', 'canada', 'china', 'croatia', 'egypt', 'france', 'germany', 'greece', 'india', 'indonesia', 'iran', 'iraq', 'ireland', 'italy', 'jamaica', 'japan', 'kenya', 'malaysia', 'mexico', 'mozambique', 'myanmar', 'nigeria', 'north-korea', 'pakistan', 'philippines', 'qatar', 'russia', 'singapore', 'south africa', 'south korea', 'spain', 'sweden', 'switzerland', 'tanzania', 'turkey', 'uganda', 'ukraine', 'venezuela', 'vietnam', 'zambia'],
   guessFormat: 'empty'
 }
 
@@ -110,7 +109,7 @@ const onKeyUpFunction = () => {
 
 const checkLetter = (letter, countryArray, formatArray) => {
   // Check the wrongGuessesAllowed Count - invoke checkResponse
-  if (wrongGussesAllowed === 0) {
+  if (wrongGussesAllowed === 1) {
     questionsWrong += 1;
     document.getElementById('score-wrong').innerHTML = questionsWrong;
     // Reduce questionsLeft count by one
@@ -190,7 +189,7 @@ const endQuestion = () => {
   };
   document.getElementById("display").remove();
   document.getElementById("game").remove();
-  document.getElementById("user-message").innerHTML = `You completed the quiz.  Check out your score.`
+  document.getElementById("user-message").innerHTML = `You completed the game.  Check out your score.`
 };
 
 // Repaly game
