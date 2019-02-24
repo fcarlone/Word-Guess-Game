@@ -11,73 +11,74 @@
   <link href="https://fonts.googleapis.com/css?family=Lato|PT+Sans" rel="stylesheet">
   <title>Word Guess Game</title>
 </head>
-<h1>GUESS THE COUNTRY GAME</h1>
-<br>
-<h3>Intructions: Guess the country based it's flag. Five flags are randomly selected - you are allowed 7
-  wrong answers for each flag.
-</h3>
-
-<div class="content">
-  <div class="messages">
-    <p id="user-message"></p>
-  </div>
-
-  <div class="d-flex justify-content-center">
-    <div id="score">
-      <div class="score-border">
-        <div class="score-content">
-          <p class="score-scoreboard">Scoreboard</p>
-
-          <p>Questions Left: <a id="score-question-left"></a></p>
-          <p>Correct Answers: <a id="score-correct"></a></p>
-          <p>Wrong Answers: <a id="score-wrong"></a></p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="d-flex justify-content-center">
-
-    <div id="display">
-      <div class="display-border">
-        <div class="display-content">
-          <p>Which country does this flag belong to?</p>
-          <p>Country Flag Number: <a id="score-question-count"></a></p>
-        </div>
-        <img id="flag-image" alt="flag">
-      </div>
-    </div>
-
-    <div id="game">
-      <div class="game-border">
-        <p class="game-content-title">Press a key to quess the country's name</p>
-        <div class="game-content">
-          <br>
-          <p>You selected letter: <a id="letter-selected"></a></p>
-          <pre><p id="question-format"></p></pre>
-          <p>You have <a id="guesses-allowed"></a> guesses left</p>
-          <p>Incorrect letter(s) selected: </p>
-          <p id="incorrect-letters"></p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div id="replay-button">
-    <button type="button" class="btn btn-light" onClick="replayGame()">Play Again</button>
-  </div>
-</div>
 
 <body>
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-    crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-    crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-    crossorigin="anonymous"></script>
-  <script type="text/javascript" src="assets/javascript/game.js"></script>
+  <h1>GUESS THE COUNTRY GAME</h1>
+  <br>
+  <h3>Intructions: Guess the country based it's flag. Five flags are randomly selected - you are allowed 7
+    wrong answers for each flag.
+  </h3>
+
+  <div class="content">
+    <div class="messages">
+      <p id="user-message"></p>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <div id="score">
+        <div class="score-border">
+          <div class="score-content">
+            <p class="score-scoreboard">Scoreboard</p>
+
+            <p>Questions Left: <a id="score-question-left"></a></p>
+            <p>Correct Answers: <a id="score-correct"></a></p>
+            <p>Wrong Answers: <a id="score-wrong"></a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-center">
+
+      <div id="display">
+        <div class="display-border">
+          <div class="display-content">
+            <p>Which country does this flag belong to?</p>
+            <p>Country Flag Number: <a id="score-question-count"></a></p>
+          </div>
+          <img id="flag-image" alt="flag">
+        </div>
+      </div>
+
+      <div id="game">
+        <div class="game-border">
+          <p class="game-content-title">Press a key to quess the country's name</p>
+          <div class="game-content">
+            <br>
+            <p>You selected letter: <a id="letter-selected"></a></p>
+            <pre><p id="question-format"></p></pre>
+            <p>You have <a id="guesses-allowed"></a> guesses left</p>
+            <p>Incorrect letter(s) selected: </p>
+            <p id="incorrect-letters"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div id="replay-game-button">
+    <button type="button" class="btn btn-lg btn-light" onClick="replayGame()">Play Again</button>
+  </div>
+</body>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+  integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+  integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+  integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script type="text/javascript" src="assets/javascript/game.js"></script>
 </body>
 
 </html>

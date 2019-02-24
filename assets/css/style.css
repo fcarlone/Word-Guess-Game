@@ -115,3 +115,7 @@ h3 {
 #guesses-allowed {
   font-weight: bold;
 }
+
+#replay-game-button {
+  text-align: center;
+}

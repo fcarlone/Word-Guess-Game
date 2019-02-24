@@ -30,7 +30,7 @@ document.getElementById('score-correct').innerHTML = 0;
 document.getElementById('score-wrong').innerHTML = 0;
 document.getElementById('score-question-left').innerHTML = questions;
 document.getElementById('score-question-count').innerHTML = questionsCount;
-// Button to give user the option to play the quiz again.
+let toggleReplayGameButton = document.getElementById('replay-game-button');
 
 
 // Get random country from countryData object - via country: array index number
@@ -183,6 +183,7 @@ const startQuestions = () => {
 
 const endQuestion = () => {
   console.log(`endQuesiton Function is invoked`)
+  displayReplayGameButton();
   // Disable keys when game is completed
   document.onkeyup = function (event) {
     return false;
@@ -195,13 +196,21 @@ const endQuestion = () => {
 // Repaly game
 const replayGame = () => {
   location.reload();
-}
+};
+
+// Display Repaly Game Button
+const displayReplayGameButton = () => {
+  console.log(`displayReplayGameButton invoked`)
+  toggleReplayGameButton.style.display = "block"
+};
 
 // Start app - IIFE 
 const startApp = (questionsCount) => {
   if (questionsCount > 5) {
     endQuestions();
   } else {
+    // Hide replay game button until quiz is completed.
+    toggleReplayGameButton.style.display = "none"
     startQuestions();
   }
 };
