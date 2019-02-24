@@ -184,6 +184,10 @@ const startQuestions = () => {
 
 const endQuestion = () => {
   console.log(`endQuesiton Function is invoked`)
+  // Disable keys when game is completed
+  document.onkeyup = function (event) {
+    return false;
+  };
   document.getElementById("display").remove();
   document.getElementById("game").remove();
   document.getElementById("user-message").innerHTML = `You completed the quiz.  Check out your score.`
