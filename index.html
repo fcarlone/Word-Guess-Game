@@ -16,7 +16,7 @@
   <h1>GUESS THE COUNTRY GAME</h1>
   <br>
   <h3>Instructions: Guess the country based it's flag. Five flags are randomly selected - you are allowed 7 wrong
-    guesses for each flag.
+    guesses for each question.
   </h3>
 
   <div class="content">
@@ -38,31 +38,35 @@
       </div>
     </div>
 
+
+
     <div class="d-flex justify-content-center">
-
-      <div id="display">
-        <div class="display-border">
-          <div class="display-content">
-            <p>Which country does this flag belong to?</p>
-            <p>Question Number: <a id="score-question-count"></a></p>
+      <div class="row">
+        <div id="display">
+          <div class="display-border">
+            <div class="display-content">
+              <p>Which country does this flag belong to?</p>
+              <p>Question Number: <a id="score-question-count"></a></p>
+            </div>
+            <img id="flag-image" alt="flag">
           </div>
-          <img id="flag-image" alt="flag">
+        </div>
+
+        <div id="game">
+          <div class="game-border">
+            <p class="game-content-title">Press a key to guess the country's name</p>
+            <div class="game-content">
+              <br>
+              <p>You selected letter: <a id="letter-selected"></a></p>
+              <pre><p id="question-format"></p></pre>
+              <p>You have <a id="guesses-allowed"></a> wrong guesses left</p>
+              <p id="quesses-selected">Incorrect letter(s) selected: </p>
+              <p id="incorrect-letters"></p>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div id="game">
-        <div class="game-border">
-          <p class="game-content-title">Press a key to guess the country's name</p>
-          <div class="game-content">
-            <br>
-            <p>You selected letter: <a id="letter-selected"></a></p>
-            <pre><p id="question-format"></p></pre>
-            <p>You have <a id="guesses-allowed"></a> wrong guesses left</p>
-            <p id="quesses-selected">Incorrect letter(s) selected: </p>
-            <p id="incorrect-letters"></p>
-          </div>
-        </div>
-      </div>
     </div>
 
   </div>
