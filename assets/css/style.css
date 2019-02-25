@@ -149,5 +149,11 @@ h3 {
     margin-right: 0;
     margin-bottom: 10px;
   }
-  @media screen and (max-width: 780px) {}
+  .row {
+    max-width: min-content;
+    margin: 0;
+  }
+  #score {
+    margin-right: 10px;
+  }
 }
