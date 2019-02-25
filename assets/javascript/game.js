@@ -23,14 +23,12 @@ const countryData = {
   guessFormat: 'empty'
 }
 
-
 // Initial website content
 document.getElementById('score-correct').innerHTML = 0;
 document.getElementById('score-wrong').innerHTML = 0;
 document.getElementById('score-question-left').innerHTML = questions;
 document.getElementById('score-question-count').innerHTML = questionsCount;
 let toggleReplayGameButton = document.getElementById('replay-game-button');
-
 
 // Get random country from countryData object - via country: array index number
 const randomCountry = (obj) => {
@@ -39,11 +37,9 @@ const randomCountry = (obj) => {
     return endQuestion();
   }
   let indexNumber = Math.floor(Math.random() * obj.country.length);
-
   // Get the value/name of the country
   countryName = obj.country[indexNumber];
   console.log(countryName);
-
   // Check if the country was already selected
   if (usedCountry.includes(countryName)) {
     // Run the randomCountry function again to get another country
@@ -54,8 +50,6 @@ const randomCountry = (obj) => {
     wrongGussesAllowed = 7;
     document.getElementById("guesses-allowed").innerHTML = wrongGussesAllowed;
     document.getElementById("incorrect-letters").innerHTML = wrongRepsonseKeyEventArray;
-
-    console.log('not used');
     // Push country to 'usedCountry array'
     usedCountry.push(countryName);
     // Push country into the 'countryArray;
@@ -69,25 +63,23 @@ const randomCountry = (obj) => {
 const countryFlagImage = (countryName) => {
   let imagePath = `assets/images/${countryName}.png`
   document.getElementById('flag-image').src = imagePath;
-}
+};
 
 const formatQuesion = (countryName) => {
-
   let regex = /([a-z])/g;
   let underscoreFormat = countryName.replace(regex, '_');
   let initialUnderscoreFormat = countryName.replace(regex, '_ ');
 
   globalUnderscoreFormat = underscoreFormat;
   formatArray = [...underscoreFormat];
-
   // document.getElementById('question-format').innerHTML = underscoreFormat;
   document.getElementById('question-format').innerHTML = initialUnderscoreFormat;
-}
+};
 
 // Put country name into separate array
 const createCountryArray = (countryName) => {
   countryArray = [...countryName]
-}
+};
 
 // Wrap onkeyup event in funciton
 const onKeyUpFunction = () => {
@@ -110,6 +102,10 @@ const onKeyUpFunction = () => {
 const checkLetter = (letter, countryArray, formatArray) => {
   // Check the wrongGuessesAllowed Count - invoke checkResponse
   if (wrongGussesAllowed === 1) {
+    // Play wrong buzzer audio
+    let wrongAudio = new Audio('assets/sounds/wrong-buzzer.wav');
+    wrongAudio.play();
+    // Update questionsWrong count
     questionsWrong += 1;
     document.getElementById('score-wrong').innerHTML = questionsWrong;
     // Reduce questionsLeft count by one
@@ -118,7 +114,6 @@ const checkLetter = (letter, countryArray, formatArray) => {
     // Start next question
     startQuestions();
   } else {
-
     // Compare letter selected against country name
     for (let i = 0; i < countryArray.length; i++) {
       if (letter === countryArray[i]) {
@@ -145,7 +140,6 @@ const lettersList = (wrongRepsonseKeyEventArray) => {
   document.getElementById('incorrect-letters').innerHTML = letters
 };
 
-
 // Add validations and check conditions for correct answer
 const checkResponse = (formatArray, countryArray, countryName) => {
   // Check if answer is correct
@@ -159,10 +153,13 @@ const checkResponse = (formatArray, countryArray, countryName) => {
     console.log(`checkResponse - check questions left count questions: ${questions} - questionsCount: ${questionsCount}`)
     questionsLeft -= 1;
     document.getElementById("score-question-left").innerHTML = questionsLeft;
+    // Play correct audio
+    let correctAudio = new Audio('assets/sounds/Correct-answer.mp3');
+    correctAudio.play();
     // start next quiz
     setTimeout(() => {
       startQuestions();
-    }, 1500);
+    }, 1000);
   } else {
     console.log('no match')
   }
