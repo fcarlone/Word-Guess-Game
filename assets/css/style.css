@@ -29,11 +29,14 @@ h3 {
 #display {
   margin-right: 10px;
   width: 500px;
+  display: inline-block;
+  vertical-align: top;
 }
 
 #game {
   margin-left: 10px;
   width: 500px;
+  display: inline-block;
 }
 
 #score {
@@ -123,4 +126,28 @@ h3 {
 
 #replay-game-button {
   text-align: center;
+}
+
+/* media sceen max-width: 1080px */
+
+@media screen and (max-width: 1080px) {
+  h3 {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+  #score {
+    width: 500px;
+  }
+}
+
+/* media sceen max-width: 980px */
+
+@media screen and (max-width: 980px) {
+  #game {
+    margin-top: 10px;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+  @media screen and (max-width: 780px) {}
 }
