@@ -39,7 +39,7 @@ const randomCountry = (obj) => {
   let indexNumber = Math.floor(Math.random() * obj.country.length);
   // Get the value/name of the country
   countryName = obj.country[indexNumber];
-  console.log(countryName);
+  // console.log(countryName);
   // Check if the country was already selected
   if (usedCountry.includes(countryName)) {
     // Run the randomCountry function again to get another country
@@ -122,13 +122,13 @@ const checkLetter = (letter, countryArray, formatArray) => {
         globalUnderscoreFormat = globalUnderscoreFormat.split('').join(' ');
         document.getElementById('question-format').innerHTML = globalUnderscoreFormat;
       } else if (responseKeyEvent.includes(letter) && !countryArray.includes(letter) && !wrongRepsonseKeyEventArray.includes(letter)) {
-        // If incorrect guess 
+        // If incorrect guess -
         // Reduce wrongRepsonseQuessCount by one and push letter to wrongResponseKeyEventArray array
         wrongRepsonseKeyEventArray.push(letter);
         document.getElementById('guesses-allowed').innerHTML = (wrongGussesAllowed -= 1);
         lettersList(wrongRepsonseKeyEventArray);
       } else {
-        // undecided
+        // do nothing
       }
     };
   }
@@ -146,11 +146,9 @@ const checkResponse = (formatArray, countryArray, countryName) => {
   checkAnswer = formatArray.join('');
   if (countryName === checkAnswer) {
     // If correct increase correct score by one and update scoreboard
-    console.log(`This country array and format array match ${countryArray}:${formatArray}`)
     questionsRight += 1;
     document.getElementById('score-correct').innerHTML = questionsRight;
     // Reduce questionsLeft count by one
-    console.log(`checkResponse - check questions left count questions: ${questions} - questionsCount: ${questionsCount}`)
     questionsLeft -= 1;
     document.getElementById("score-question-left").innerHTML = questionsLeft;
     // Play correct audio
@@ -161,7 +159,7 @@ const checkResponse = (formatArray, countryArray, countryName) => {
       startQuestions();
     }, 1000);
   } else {
-    console.log('no match')
+    // console.log('no match')
   }
 };
 
@@ -180,7 +178,7 @@ const startQuestions = () => {
 };
 
 const endQuestion = () => {
-  console.log(`endQuesiton Function is invoked`)
+  // console.log(`endQuesiton Function is invoked`)
   displayReplayGameButton();
   // Disable keys when game is completed
   document.onkeyup = function (event) {
@@ -198,7 +196,7 @@ const replayGame = () => {
 
 // Display Repaly Game Button
 const displayReplayGameButton = () => {
-  console.log(`displayReplayGameButton invoked`)
+  // console.log(`displayReplayGameButton invoked`)
   toggleReplayGameButton.style.display = "block"
 };
 
