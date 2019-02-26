@@ -15,7 +15,7 @@
 <body>
   <h1>GUESS THE COUNTRY GAME</h1>
   <br>
-  <h3>Instructions: Guess the country based it's flag. Five flags are randomly selected - you are allowed 7 wrong
+  <h3>Instructions: Guess the country based its flag. Five flags are randomly selected - you are allowed 7 wrong
     guesses for each question.
   </h3>
 
@@ -46,7 +46,7 @@
               <p>Which country does this flag belong to?</p>
               <p>Question Number: <a id="score-question-count"></a></p>
             </div>
-            <img id="flag-image" alt="flag">
+            <img id="flag-image" src="assets/images/001-background.jpeg" alt="flag">
           </div>
         </div>
 
@@ -56,7 +56,7 @@
             <div class="game-content">
               <br>
               <p>You selected letter: <a id="letter-selected"></a></p>
-              <pre><p id="question-format"></p></pre>
+              <pre id="question-format"></pre>
               <p>You have <a id="guesses-allowed"></a> wrong guesses left</p>
               <p id="quesses-selected">Incorrect letter(s) selected: </p>
               <p id="incorrect-letters"></p>
@@ -71,15 +71,17 @@
   <div id="replay-game-button">
     <button type="button" class="btn btn-lg btn-light" onClick="replayGame()">Play Again</button>
   </div>
-</body>
 
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-  integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-  integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-  integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-<script type="text/javascript" src="assets/javascript/game.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <script src="assets/javascript/game.js"></script>
 </body>
 
 </html>
